@@ -3,6 +3,20 @@
 
 #include "argparser.h"
 
+const char *argv[] = {
+  "test",
+  "pos1",
+  "-ab",
+  "b_arg",
+  "-c",
+  "pos2",
+  "--",
+  "-d",
+  "pos3"
+};
+
+const int argc = (int) (sizeof argv / sizeof argv[0]);
+
 struct argparser_t *parser; 
 
 void create_parser(void)
@@ -81,6 +95,15 @@ void add_option_d_struct(void)
     .takes_arg = true 
   };
   argparser_from_struct(parser, &opt_init);
+}
+
+void create_parser_with_options(void)
+{
+  parser = argparser_new("test");
+  add_option_a();
+  add_option_b();
+  add_option_c();
+  add_option_d();
 }
 
 #endif
