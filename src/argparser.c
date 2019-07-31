@@ -247,6 +247,11 @@ void argparser_usage(struct argparser_t *parser)
 
 void argparser_dump(struct argparser_t *parser)
 {
+  printf("Parser:\n");
+  printf("  prog_name: %s\n", parser->prog_name);
+  printf("  count: %d\n", parser->count);
+  printf("  positional_count: %d\n\n", parser->positional_count);
+
   for (int i = 0; i < parser->count; i++)
   {
     struct option_t *opt = parser->options[i];
