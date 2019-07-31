@@ -48,7 +48,7 @@ void argparser_add(
   bool required, 
   bool takes_arg);
 void argparser_from_struct(struct argparser_t *parser, struct option_init_t *init);
-void argparser_parse(struct argparser_t *parser, int argc, char *argv[]);
+int argparser_parse(struct argparser_t *parser, int argc, char *argv[]);
 bool argparser_passed(struct argparser_t *parser, const char *optname);
 const char *argparser_get(struct  argparser_t *parser, const char *optname);
 void argparser_free(struct argparser_t *parser);

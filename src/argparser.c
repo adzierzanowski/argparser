@@ -76,8 +76,10 @@ static void argparser_take_arg(
   (*i)++;
 }
 
-void argparser_parse(struct argparser_t *parser, int argc, char *argv[])
+int argparser_parse(struct argparser_t *parser, int argc, char *argv[])
 {
+  int passed_count = 0;
+
   if (parser->prog_name == NULL)
     parser->prog_name = argv[0];
 
@@ -106,7 +108,11 @@ void argparser_parse(struct argparser_t *parser, int argc, char *argv[])
     if (argi > -1)
     {
       struct option_t *opt = parser->options[argi];
-      opt->passed = true;
+      if (! opt->passed)
+      {
+        opt->passed = true;
+        passed_count++;
+      }
       if (opt->takes_arg)
         argparser_take_arg(opt, &i, argc, argv);
     }
@@ -121,7 +127,11 @@ void argparser_parse(struct argparser_t *parser, int argc, char *argv[])
         if (argi > -1)
         {
           struct option_t *opt = parser->options[argi];
-          opt->passed = true;
+          if (! opt->passed)
+          {
+            opt->passed = true;
+            passed_count++;
+          }
           if (opt->takes_arg)
           {
             if (k == strlen(arg) - 1)
@@ -153,6 +163,8 @@ void argparser_parse(struct argparser_t *parser, int argc, char *argv[])
 
   if (pos_idxs != NULL)
     free(pos_idxs);
+  
+  return passed_count;
 }
 
 void argparser_validate(struct argparser_t *parser)

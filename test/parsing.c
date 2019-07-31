@@ -64,3 +64,9 @@ Test(parsing, long_b_value, .init=create_parser_with_options, .fini=destroy_pars
     argparser_get(parser, "--option-b"), "b_arg",
     "Expected --option-b value to be 'b_arg' but got '%s'.", argparser_get(parser, "--option-b"));
 }
+
+Test(parsing, passed_count, .init=create_parser_with_options, .fini=destroy_parser)
+{
+  int passed_cnt = argparser_parse(parser, argc, (char **) argv);
+  cr_expect(passed_cnt == 3, "Expected 3 of defined arguments to be passed, got %d.", passed_cnt);
+}
