@@ -118,7 +118,7 @@ int argparser_parse(struct argparser_t *parser, int argc, char *argv[])
     }
     else if (strlen(arg) > 2 && arg[0] == '-' && arg[1] != '-')
     {
-      for (int k = 1; k < strlen(arg); k++)
+      for (int k = 1; k < (int) strlen(arg); k++)
       {
         char c_arg[3];
         sprintf(c_arg, "-%c", arg[k]);
@@ -134,7 +134,7 @@ int argparser_parse(struct argparser_t *parser, int argc, char *argv[])
           }
           if (opt->takes_arg)
           {
-            if (k == strlen(arg) - 1)
+            if (k == (int) strlen(arg) - 1)
               argparser_take_arg(opt, &i, argc, argv);
             else
             {
@@ -231,7 +231,7 @@ void argparser_usage(struct argparser_t *parser)
       metavar[0] = ' ';
       const char *name = opt->long_name;
       int j = 1;
-      for (int i = 0; i < strlen(name); i++)
+      for (int i = 0; i < (int) strlen(name); i++)
       {
         if (isalnum(name[i]))
           metavar[j++] = toupper(name[i]);
