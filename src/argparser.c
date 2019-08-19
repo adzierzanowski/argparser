@@ -216,7 +216,7 @@ void argparser_free(struct argparser_t *parser)
 
     free(parser);
   }
-};
+}
 
 void argparser_usage(struct argparser_t *parser)
 {
@@ -292,3 +292,4 @@ void argparser_option_dump(struct option_t *opt)
       "Value", opt->value == NULL ? "(NULL)" : opt->value);
   printf("\n");
 }
+

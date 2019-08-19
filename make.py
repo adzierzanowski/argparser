@@ -28,6 +28,7 @@ def make_tests():
         '-I{}'.format(TEST),
         '-Wall',
         '-Wextra',
+        '-Wpedantic',
         '-Werror',
         '-std=c11',
         '-lcriterion',
@@ -59,3 +60,4 @@ if __name__ == '__main__':
     clean()
     make_tests()
     run_tests()
+
