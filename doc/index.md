@@ -1,4 +1,3 @@
-
 # argparser
 
 * [Basic usage](usage.md)
