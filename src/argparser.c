@@ -1,5 +1,6 @@
 #include "argparser.h"
 
+
 int argparser_index_of(struct argparser_t *parser, const char *optname)
 {
   for (int i = 0; i < parser->count; i++)
@@ -29,8 +30,8 @@ void argparser_add(
   const char *long_name, 
   const char *help, 
   bool required, 
-  bool takes_arg)
-{
+  bool takes_arg
+) {
   int i = parser->count;
   parser->count++;
   parser->options = realloc(parser->options,
@@ -48,7 +49,8 @@ void argparser_add(
   parser->options[i] = opt;
 }
 
-void argparser_from_struct(struct argparser_t *parser, struct option_init_t *init)
+void argparser_from_struct(
+  struct argparser_t *parser, struct option_init_t *init)
 {
   argparser_add(
     parser,
@@ -292,4 +294,3 @@ void argparser_option_dump(struct option_t *opt)
       "Value", opt->value == NULL ? "(NULL)" : opt->value);
   printf("\n");
 }
-
