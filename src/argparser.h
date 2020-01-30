@@ -1,6 +1,10 @@
 #ifndef ARGPARSER_H
 #define ARGPARSER_H
 
+#ifdef __cplusplus
+  extern "C" {
+#endif
+
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
@@ -58,5 +62,9 @@ void argparser_usage(struct argparser_t *parser);
 void argparser_validate(struct argparser_t *parser);
 void argparser_dump(struct argparser_t *parser);
 void argparser_option_dump(struct option_t *opt);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
